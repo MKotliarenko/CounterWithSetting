@@ -1,26 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import {WrapperCounter} from './components/WrapperCounter';
+import {WrapperSetting} from "./components/WrapperSetting";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+    let [num, setNum] = useState(0)
+    let [valueInputMin, setValueInputMin] = useState<number>(0)
+    let [valueInputMax, setValueInputMax] = useState<number>(5)
+    let disabledButtonInc = num === valueInputMax
+    let disabledButtonReset = num === valueInputMin
+
+
+    const incCallback=()=>{
+        let newNum: number = num === valueInputMax ? num : num + 1
+        setNum(newNum)
+    }
+    const resetCallback=()=>{
+        setNum(valueInputMin)
+    }
+    const StartNumber =()=>{
+        setNum(valueInputMin)
+    }
+
+
+return (
+    <div>
+        <WrapperSetting StartNumber={StartNumber}
+                        setValueInputMin={setValueInputMin}
+                        setValueInputMax={setValueInputMax}
+                        valueInputMax={valueInputMax}
+                        valueInputMin={valueInputMin}
+                        />
+        <WrapperCounter num={num}
+                        incCallback={incCallback}
+                        resetCallback={resetCallback}
+                        disabledButtonInc={disabledButtonInc}
+                        disabledButtonReset={disabledButtonReset}
+                        valueInputMax={valueInputMax}/>
     </div>
-  );
+);
 }
 
 export default App;
