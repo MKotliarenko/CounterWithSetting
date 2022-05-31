@@ -8,27 +8,36 @@ type WrapperCounterPropsType = {
     resetCallback: () => void
     disabledButtonInc: boolean
     disabledButtonReset: boolean
-    valueInputMax:number
+    valueInputMax: number
+    valueInputMin: number
+    ChangesMessage:boolean
+
 }
 
 export const WrapperCounter: React.FC<WrapperCounterPropsType> = (
-    {num, incCallback, resetCallback, disabledButtonReset, disabledButtonInc,valueInputMax}
+    {
+        num, incCallback, resetCallback,
+        disabledButtonReset, disabledButtonInc,
+        valueInputMax, valueInputMin,
+        ChangesMessage
+    }
 ) => {
 
 
-    const onClickHandlerInc = () => {
+    const onClickCallbackInc = () => {
         incCallback()
     }
-    const onClickHandlerReset = () => {
+    const onClickCallbackReset = () => {
         resetCallback()
     }
+    let errorMessage = valueInputMax <= valueInputMin || valueInputMax < 0 || valueInputMin < 0
 
 
     return (
         <div className={'Wrapper'}>
-            <Display num={num} valueInputMax={valueInputMax}/>
-            <Button title={'INC'} onClickHandler={onClickHandlerInc} disabled={disabledButtonInc}/>
-            <Button title={'RESET'} onClickHandler={onClickHandlerReset} disabled={disabledButtonReset}/>
+            <Display num={num} valueInputMax={valueInputMax} errorMessage={errorMessage} ChangesMessage={ChangesMessage}/>
+            <Button title={'INC'} onClickCallback={onClickCallbackInc} disabled={disabledButtonInc}/>
+            <Button title={'RESET'} onClickCallback={onClickCallbackReset} disabled={disabledButtonReset}/>
         </div>
     );
 };

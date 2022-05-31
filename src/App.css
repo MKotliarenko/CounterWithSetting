@@ -1,61 +1,103 @@
 body {
-  background-color: #282c34
+    background-color: #282c34
 }
 
 .Wrapper {
-  width: 450px;
-  height: 250px;
-  text-align: center;
-  border-radius: 10px;
-  border : 2px solid lightskyblue;
-  margin: 30px auto;
+    width: 450px;
+    height: 250px;
+    text-align: center;
+    border-radius: 10px;
+    border: 2px solid lightskyblue;
+    margin: 30px auto;
+
 }
-.Display, .red{
-  width: 350px;
-  height: 100px;
-  border-radius: 10px;
-  border : 2px solid lightskyblue;
-  margin: 30px auto;
-  color: white;
-  font-size:100px;
-  text-align: center;
-  line-height:100px;
-  font-weight:bold;
+
+.Display, .red {
+    width: 350px;
+    height: 100px;
+    border-radius: 10px;
+    border: 2px solid lightskyblue;
+    margin: 30px auto;
+    color: white;
+    font-size: 100px;
+    text-align: center;
+    line-height: 100px;
+    font-weight: bold;
+
 }
+
 .Button {
-  width:150px;
-  height:50px;
-  text-align: center;
-  border-radius: 10px;
-  margin-left: 25px;
-  position: relative;
-  margin-right:25px;
-  font-weight:bold;
-  text-decoration:none;
-  background-color: deepskyblue;
+    width: 150px;
+    height: 50px;
+    text-align: center;
+    border-radius: 10px;
+    margin-left: 25px;
+    position: relative;
+    margin-right: 25px;
+    font-weight: bold;
+    text-decoration: none;
+    background-color: deepskyblue;
 }
+
 .red {
-  color: red;
+    color: red;
 }
+
 .App {
 
 }
+
 .InputWrapper {
-  width: 350px;
-  height: 100px;
-  border-radius: 10px;
-  border : 2px solid lightskyblue;
-  margin: 30px auto;
-}
-.InputUniversal {
-  margin: 15px 0px auto 40px;
-  width: 110px;
-  border : 2px solid lightskyblue;
-  border-radius: 5px;
-  text-align: center;
+    width: 350px;
+    height: 100px;
+    border-radius: 10px;
+    border: 2px solid lightskyblue;
+    margin: 30px auto;
+    vertical-align: center;
+
 
 }
+
+.InputUniversal, .InputError {
+    width: 110px;
+    border: 2px solid lightskyblue;
+    border-radius: 5px;
+    text-align: center;
+
+
+
+}
+.InputError {
+    border: 2px solid red;
+    background-color: rgb(250, 153, 153);
+
+}
+
 .span {
-  color:lightskyblue;
-  font-weight:900;
+    color: lightskyblue;
+    font-weight: 900;
+
+
+
+}
+
+.errorMessage, .ChangesMessage {
+    color: red;
+    width: 350px;
+    height: 100px;
+    border-radius: 10px;
+    border: 2px solid lightskyblue;
+    margin: 30px auto;
+    font-size: 30px;
+    text-align: center;
+    line-height: 100px;
+    font-weight: bold;
+}
+.ChangesMessage {
+    color: lightskyblue;
+    font-size: 20px;
+
+}
+input {
+    outline:none;
 }

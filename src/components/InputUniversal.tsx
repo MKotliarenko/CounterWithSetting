@@ -2,23 +2,25 @@ import React, {ChangeEvent, ChangeEventHandler, DetailedHTMLProps, InputHTMLAttr
 
 type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 
-type InputUniversalPropsType= Omit<DefaultInputPropsType, 'type'> & {
-    title:string
-    setValueInput:(num:number)=>void
-    valueInput:number
+type InputUniversalPropsType = Omit<DefaultInputPropsType, 'type'> & {
+    title: string
+    setValueInput: (num: number) => void
+    inputValue: number
+    message:boolean
 
 }
 
-export const InputUniversal:React.FC<InputUniversalPropsType> = ({title, setValueInput,valueInput, ...restProps}) => {
-    
-    const onChangeInputHandler=(e:ChangeEvent<HTMLInputElement>)=>{
-        setValueInput(parseInt(e.currentTarget.value))
+export const InputUniversal: React.FC<InputUniversalPropsType> = ({title, setValueInput, inputValue,message, ...restProps}) => {
+
+    const onChangeInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        setValueInput(JSON.parse(e.currentTarget.value))
     }
+    const InputClassName= message? 'InputError': 'InputUniversal'
 
     return (
         <div>
-            <span  className={'span'}>{title}</span>
-            <input value={valueInput}  className={'InputUniversal'} type={"number"} onChange={onChangeInputHandler}>
+            <span className= {'span'}>{title}</span>
+            <input value={inputValue} className={InputClassName} type={"number"} onChange={onChangeInputHandler}>
             </input>
         </div>
     );
