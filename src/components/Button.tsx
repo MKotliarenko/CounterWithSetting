@@ -6,9 +6,9 @@ type ButtonPropsType = {
     disabled: boolean
 }
 
-
 export const Button: React.FC<ButtonPropsType> = ({title, onClickCallback, disabled}) => {
-    const onClickHandler =()=>{
+
+    const onClickHandler = () => {
         onClickCallback()
     }
 

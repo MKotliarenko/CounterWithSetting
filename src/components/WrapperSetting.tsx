@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button} from "./Button";
 import {InputUniversal} from "./InputUniversal";
 
@@ -7,22 +7,28 @@ type WrapperSettingPropsType = {
     setValueInputMax: (max: number) => void
     valueInputMax: number
     valueInputMin: number
-    setNum:(num:number)=>void
+    setNum: (num: number) => void
+    InputMin: number
+    InputMax: number
+    setInputMin: (min: number) => void
+    setInputMax: (max: number) => void
+    messageMax: boolean
+    messageMin: boolean
 
 
 }
-export const WrapperSetting: React.FC<WrapperSettingPropsType> = ({setValueInputMin,
-                                                                      setValueInputMax,
-                                                                      valueInputMax,
-                                                                      valueInputMin,setNum
-                                                                  }) => {
-    let [InputMin, setInputMin] = useState<number>(0)
-    let [InputMax, setInputMax] = useState<number>(5)
+export const WrapperSetting: React.FC<WrapperSettingPropsType> = (
+    {
+        setValueInputMin,
+        setValueInputMax,
+        valueInputMax,
+        valueInputMin, setNum,
+        InputMin, InputMax,
+        setInputMin, setInputMax, messageMax,
+        messageMin
+    }) => {
 
-    const disableSetButton = valueInputMin===InputMin && valueInputMax===InputMax
-    let messageMax=InputMax<InputMin||InputMax<0
-    let messageMin=InputMin>InputMax||InputMin<0
-
+    const disableSetButton = valueInputMin === InputMin && valueInputMax === InputMax || messageMin || messageMax
 
     const onClickCallback = () => {
         setValueInputMax(InputMax)
@@ -33,8 +39,10 @@ export const WrapperSetting: React.FC<WrapperSettingPropsType> = ({setValueInput
     return (
         <div className={'Wrapper'}>
             <div className={'InputWrapper'}>
-                <InputUniversal title={'Max value:'} setValueInput={setInputMax} inputValue={InputMax} message={messageMax}/>
-                <InputUniversal title={'Start value:'} setValueInput={setInputMin} inputValue={InputMin} message={messageMin}/>
+                <InputUniversal title={'Max value:'} setValueInput={setInputMax} inputValue={InputMax}
+                                message={messageMax}/>
+                <InputUniversal title={'Start value:'} setValueInput={setInputMin} inputValue={InputMin}
+                                message={messageMin}/>
             </div>
             <Button title={'SET'} onClickCallback={onClickCallback} disabled={disableSetButton}/>
         </div>

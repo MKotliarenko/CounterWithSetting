@@ -11,6 +11,7 @@ type WrapperCounterPropsType = {
     valueInputMax: number
     valueInputMin: number
     ChangesMessage:boolean
+    errorMessage:boolean
 
 }
 
@@ -19,7 +20,7 @@ export const WrapperCounter: React.FC<WrapperCounterPropsType> = (
         num, incCallback, resetCallback,
         disabledButtonReset, disabledButtonInc,
         valueInputMax, valueInputMin,
-        ChangesMessage
+        ChangesMessage,errorMessage
     }
 ) => {
 
@@ -30,8 +31,6 @@ export const WrapperCounter: React.FC<WrapperCounterPropsType> = (
     const onClickCallbackReset = () => {
         resetCallback()
     }
-    let errorMessage = valueInputMax <= valueInputMin || valueInputMax < 0 || valueInputMin < 0
-
 
     return (
         <div className={'Wrapper'}>
