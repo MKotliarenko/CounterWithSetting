@@ -10,6 +10,7 @@ body {
     border: 2px solid lightskyblue;
     margin: 30px auto;
 
+
 }
 
 .Display, .red {
@@ -44,6 +45,7 @@ body {
 }
 
 .App {
+    display: flex;
 
 }
 
@@ -53,18 +55,20 @@ body {
     border-radius: 10px;
     border: 2px solid lightskyblue;
     margin: 30px auto;
-    vertical-align: center;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 
 
 }
 
 .InputUniversal, .InputError {
-    width: 110px;
+    width: 50%;
+    height: 20px;
     border: 2px solid lightskyblue;
     border-radius: 5px;
     text-align: center;
-
-
+    margin-top: 12px;
 
 }
 .InputError {
@@ -76,9 +80,8 @@ body {
 .span {
     color: lightskyblue;
     font-weight: 900;
-
-
-
+    margin-left:  20px;
+    margin-top: 12px;
 }
 
 .errorMessage, .ChangesMessage {

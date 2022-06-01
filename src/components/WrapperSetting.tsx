@@ -39,9 +39,12 @@ export const WrapperSetting: React.FC<WrapperSettingPropsType> = (
     return (
         <div className={'Wrapper'}>
             <div className={'InputWrapper'}>
-                <InputUniversal title={'Max value:'} setValueInput={setInputMax} inputValue={InputMax}
+                <span className={'span'}>Max value:</span>
+                <InputUniversal  setValueInput={setInputMax} inputValue={InputMax}
                                 message={messageMax}/>
-                <InputUniversal title={'Start value:'} setValueInput={setInputMin} inputValue={InputMin}
+
+                <span className={'span'}>Start value:</span>
+                <InputUniversal setValueInput={setInputMin} inputValue={InputMin}
                                 message={messageMin}/>
             </div>
             <Button title={'SET'} onClickCallback={onClickCallback} disabled={disableSetButton}/>

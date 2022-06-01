@@ -59,7 +59,7 @@ function App() {
     }
 
     return (
-        <div>
+        <div className={'App'} >
             <WrapperSetting setValueInputMin={setValueInputMin}
                             setValueInputMax={setValueInputMax}
                             valueInputMax={valueInputMax}
