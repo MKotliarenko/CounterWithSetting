@@ -15,7 +15,7 @@ function App() {
     let messageMax = InputMax <= InputMin || InputMax < 0
     let messageMin = InputMin >= InputMax || InputMin < 0
     let errorMessage = InputMax <= InputMin || InputMax < 0 || InputMin < 0
-    let disabledButtonInc = num === valueInputMax
+    let disabledButtonInc = num === valueInputMax || errorMessage
     let disabledButtonReset = num === valueInputMin
     let ChangesMessage: boolean = InputMin !== valueInputMin || InputMax !== valueInputMax
 
