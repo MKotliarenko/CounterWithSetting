@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Display} from "./Display";
 import {Button} from "./Button";
+import {setNewValueAC} from "../state/counterNumber-reducer";
+import {useDispatch} from "react-redux";
 
 type WrapperCounterPropsType = {
     num: number
-    incCallback: () => void
-    resetCallback: () => void
     disabledButtonInc: boolean
     disabledButtonReset: boolean
     valueInputMax: number
@@ -17,19 +17,22 @@ type WrapperCounterPropsType = {
 
 export const WrapperCounter: React.FC<WrapperCounterPropsType> = (
     {
-        num, incCallback, resetCallback,
+        num,
         disabledButtonReset, disabledButtonInc,
         valueInputMax, valueInputMin,
         ChangesMessage,errorMessage
     }
 ) => {
 
+    const dispatch = useDispatch();
+
 
     const onClickCallbackInc = () => {
-        incCallback()
+        let newNum: number = num === valueInputMax ? num : num + 1
+        dispatch(setNewValueAC(newNum))
     }
     const onClickCallbackReset = () => {
-        resetCallback()
+        dispatch(setNewValueAC(valueInputMin))
     }
 
     return (

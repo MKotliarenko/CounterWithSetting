@@ -1,17 +1,15 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {Button} from "./Button";
 import {InputUniversal} from "./InputUniversal";
+import {useDispatch} from "react-redux";
+import {setNewValueAC} from "../state/counterNumber-reducer";
+import {setNewSettingAC, ValueInputMaxAC, ValueInputMinAC} from '../state/setting-reducer';
 
 type WrapperSettingPropsType = {
-    setValueInputMin: (min: number) => void
-    setValueInputMax: (max: number) => void
     valueInputMax: number
     valueInputMin: number
-    setNum: (num: number) => void
     InputMin: number
     InputMax: number
-    setInputMin: (min: number) => void
-    setInputMax: (max: number) => void
     messageMax: boolean
     messageMin: boolean
 
@@ -19,32 +17,36 @@ type WrapperSettingPropsType = {
 }
 export const WrapperSetting: React.FC<WrapperSettingPropsType> = (
     {
-        setValueInputMin,
-        setValueInputMax,
         valueInputMax,
-        valueInputMin, setNum,
+        valueInputMin,
         InputMin, InputMax,
-        setInputMin, setInputMax, messageMax,
+        messageMax,
         messageMin
     }) => {
+    const dispatch = useDispatch();
 
     const disableSetButton = valueInputMin === InputMin && valueInputMax === InputMax || messageMin || messageMax
 
     const onClickCallback = () => {
-        setValueInputMax(InputMax)
-        setValueInputMin(InputMin)
-        setNum(InputMin)
+        dispatch(setNewSettingAC(InputMin,InputMax))
+        dispatch(setNewValueAC(InputMin))
+    }
+    const inputMaxCallback =(maxValue:number)=>{
+        dispatch(ValueInputMaxAC(maxValue))
+    }
+    const inputMinCallback =(minValue:number)=>{
+        dispatch(ValueInputMinAC(minValue))
     }
 
     return (
         <div className={'Wrapper'}>
             <div className={'InputWrapper'}>
                 <span className={'span'}>Max value:</span>
-                <InputUniversal  setValueInput={setInputMax} inputValue={InputMax}
+                <InputUniversal  ValueInputCallback={inputMaxCallback} inputValue={InputMax}
                                 message={messageMax}/>
 
                 <span className={'span'}>Start value:</span>
-                <InputUniversal setValueInput={setInputMin} inputValue={InputMin}
+                <InputUniversal ValueInputCallback={inputMinCallback} inputValue={InputMin}
                                 message={messageMin}/>
             </div>
             <Button title={'SET'} onClickCallback={onClickCallback} disabled={disableSetButton}/>

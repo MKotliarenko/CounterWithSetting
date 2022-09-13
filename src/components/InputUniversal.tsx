@@ -1,20 +1,20 @@
-import React, {ChangeEvent, ChangeEventHandler, DetailedHTMLProps, InputHTMLAttributes, useState} from 'react';
+import React, {ChangeEvent, DetailedHTMLProps, InputHTMLAttributes} from 'react';
 
 type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 type InputUniversalPropsType = Omit<DefaultInputPropsType, 'type'> & {
-    setValueInput: (num: number) => void
+    ValueInputCallback: (num: number) => void
     inputValue: number
     message: boolean
 
 }
 
 export const InputUniversal: React.FC<InputUniversalPropsType> = ({
-                                                                       setValueInput, inputValue,
+                                                                      ValueInputCallback, inputValue,
                                                                       message, ...restProps
                                                                   }) => {
 
     const onChangeInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setValueInput(JSON.parse(e.currentTarget.value))
+        ValueInputCallback(JSON.parse(e.currentTarget.value))
     }
     const InputClassName = message ? 'InputError' : 'InputUniversal'
 

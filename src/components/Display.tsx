@@ -7,10 +7,11 @@ type DisplayPropsType = {
     ChangesMessage: boolean
 }
 
-export const Display: React.FC<DisplayPropsType> = ({
-                                                        num, valueInputMax,
-                                                        errorMessage, ChangesMessage
-                                                    }
+export const Display: React.FC<DisplayPropsType> = (
+    {
+        num, valueInputMax,
+        errorMessage, ChangesMessage
+    }
 ) => {
 
     let finalClassName: string = ''
