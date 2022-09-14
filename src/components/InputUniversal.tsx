@@ -14,7 +14,8 @@ export const InputUniversal: React.FC<InputUniversalPropsType> = ({
                                                                   }) => {
 
     const onChangeInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        ValueInputCallback(JSON.parse(e.currentTarget.value))
+        ValueInputCallback(+e.currentTarget.value)
+        //ValueInputCallback(JSON.parse(e.currentTarget.value))    -   '+' macht string wie number
     }
     const InputClassName = message ? 'InputError' : 'InputUniversal'
 

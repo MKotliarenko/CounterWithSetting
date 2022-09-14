@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {Display} from "./Display";
 import {Button} from "./Button";
 import {setNewValueAC} from "../state/counterNumber-reducer";
@@ -15,7 +15,7 @@ type WrapperCounterPropsType = {
 
 }
 
-export const WrapperCounter: React.FC<WrapperCounterPropsType> = (
+export const WrapperCounter: React.FC<WrapperCounterPropsType> = React.memo((
     {
         num,
         disabledButtonReset, disabledButtonInc,
@@ -23,17 +23,18 @@ export const WrapperCounter: React.FC<WrapperCounterPropsType> = (
         ChangesMessage,errorMessage
     }
 ) => {
+    console.log("wraperCounter")
 
     const dispatch = useDispatch();
 
 
-    const onClickCallbackInc = () => {
+    const onClickCallbackInc = useCallback(() => {
         let newNum: number = num === valueInputMax ? num : num + 1
         dispatch(setNewValueAC(newNum))
-    }
-    const onClickCallbackReset = () => {
+    },[dispatch,num])
+    const onClickCallbackReset = useCallback(() => {
         dispatch(setNewValueAC(valueInputMin))
-    }
+    },[dispatch,valueInputMin])
 
     return (
         <div className={'Wrapper'}>
@@ -42,5 +43,5 @@ export const WrapperCounter: React.FC<WrapperCounterPropsType> = (
             <Button title={'RESET'} onClickCallback={onClickCallbackReset} disabled={disabledButtonReset}/>
         </div>
     );
-};
+});
 

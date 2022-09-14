@@ -8,6 +8,7 @@ import {RootState} from "./store/store";
 
 function App() {
 
+    console.log("APP")
     const InputMax = useSelector<RootState, number>(state=>state.Setting.InputMax)
     const InputMin = useSelector<RootState, number>(state=>state.Setting.InputMin)
     const num = useSelector<RootState, number> (state=>state.CounterNumber.num)

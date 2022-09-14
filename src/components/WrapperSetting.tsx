@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import {Button} from "./Button";
 import {InputUniversal} from "./InputUniversal";
 import {useDispatch} from "react-redux";
@@ -15,7 +15,7 @@ type WrapperSettingPropsType = {
 
 
 }
-export const WrapperSetting: React.FC<WrapperSettingPropsType> = (
+export const WrapperSetting: React.FC<WrapperSettingPropsType> = React.memo((
     {
         valueInputMax,
         valueInputMin,
@@ -23,20 +23,22 @@ export const WrapperSetting: React.FC<WrapperSettingPropsType> = (
         messageMax,
         messageMin
     }) => {
+    console.log("wraperSetting")
+
     const dispatch = useDispatch();
 
     const disableSetButton = valueInputMin === InputMin && valueInputMax === InputMax || messageMin || messageMax
 
-    const onClickCallback = () => {
+    const onClickCallback = useCallback(() => {
         dispatch(setNewSettingAC(InputMin,InputMax))
         dispatch(setNewValueAC(InputMin))
-    }
-    const inputMaxCallback =(maxValue:number)=>{
+    },[dispatch,InputMin,InputMax])
+    const inputMaxCallback =useCallback((maxValue:number)=>{
         dispatch(ValueInputMaxAC(maxValue))
-    }
-    const inputMinCallback =(minValue:number)=>{
+    },[dispatch])
+    const inputMinCallback =useCallback((minValue:number)=>{
         dispatch(ValueInputMinAC(minValue))
-    }
+    },[dispatch])
 
     return (
         <div className={'Wrapper'}>
@@ -52,4 +54,4 @@ export const WrapperSetting: React.FC<WrapperSettingPropsType> = (
             <Button title={'SET'} onClickCallback={onClickCallback} disabled={disableSetButton}/>
         </div>
     );
-};
+});
